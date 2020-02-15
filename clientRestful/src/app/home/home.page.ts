@@ -4,6 +4,7 @@ import { Usuario } from '../model/Usuario';
 import { UiService } from '../services/ui.service';
 import { IonSearchbar } from '@ionic/angular';
 import { FormPage } from '../form/form.page';
+import { Puntuacion } from '../model/Puntuacion';
 
 @Component({
   selector: 'app-home',
@@ -57,10 +58,15 @@ export class HomePage {
 
   public async addUser(){
     const itemToBeCreated = await this.ui.showModal(FormPage, {item: {}});
+    let canti;
+    
     console.log(itemToBeCreated);
     try{
+      itemToBeCreated.data.puntuaciones = [];
+      canti = itemToBeCreated.data.puntuaciones;
       if(itemToBeCreated.data){
         await this.ui.showLoading();
+        itemToBeCreated.data.puntuaciones.push({id: '', cantidad: canti});
         await this.api.createUser(itemToBeCreated.data);
         await this.loadAll();
       }

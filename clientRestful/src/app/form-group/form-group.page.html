@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{this.mode}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <ion-input type="hidden" formControlName="id"></ion-input>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" formControlName="nombre"></ion-input>
+    </ion-item>
+  
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="!this.form.valid" type="submit" color="primary" expand="block">Enviar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+
+  
+  <span class="error ion-padding" *ngIf="this.errorControl.nombre.status=='INVALID'" color="danger">
+    {{this.errorControlNombre}}
+  </span>
+</ion-content>

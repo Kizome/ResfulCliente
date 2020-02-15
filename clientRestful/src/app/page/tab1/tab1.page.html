@@ -1,39 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Usuarios
+      Grupos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-toolbar>
-    <ion-searchbar #input showCancelButton="focus" debounce="500" (ionChange)="buscaUser($event)"></ion-searchbar>
-  </ion-toolbar>
-
   <ion-list>
-    <ion-item-sliding *ngFor="let usuario of listado">
+    <ion-item-sliding *ngFor="let grupo of listado">
       
       <ion-item>
-       <div><h1>{{usuario.nick}}</h1>
-        {{usuario.estado}}
+       <div><h1>{{grupo.nombre}}</h1>
+        
       </div>
       </ion-item>
-      <ion-item-options side="start" (click)="editUser(usuario)">
+      <ion-item-options side="start" (click)="editGroup(grupo)">
         <ion-item-option color="primary">
           <ion-icon slot="icon-only" name="create"></ion-icon>
         </ion-item-option>
       </ion-item-options>
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="removeUser(usuario)">
+        <ion-item-option color="danger" (click)="removeGroup(grupo)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 
-  <ion-fab (click)="this.addUser()" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab (click)="this.addGrupo()" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="person-add-outline"></ion-icon>
     </ion-fab-button>

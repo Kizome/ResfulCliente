@@ -4,5 +4,11 @@
         "changeOrigin": true,
         "secure": false,
         "logLevel": "debug"
+    },
+    "/grupo":{
+        "target":"https://resful-example.herokuapp.com/",
+        "changeOrigin": true,
+        "secure": false,
+        "logLevel": "debug"
     }
 }

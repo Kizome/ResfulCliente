@@ -17,7 +17,6 @@ import {
 })
 export class FormPage {
   private user: Usuario;
-
   private mode: string;
   private form: FormGroup;
 
@@ -32,55 +31,71 @@ export class FormPage {
     } else {
       this.mode = 'Creando';
       this.user = {
-        id:'',
+        id: '',
         puntuaciones: [],
         nick: '',
         estado: ''
       }
     }
 
-    this.form = this.formBuilder.group({
-      id: new FormControl(this.user.id),
-      nick: new FormControl(
-        this.user.nick,
-        Validators.compose([Validators.required, Validators.maxLength(128)])
-      ),
-      puntuacion: new FormControl(this.user.puntuaciones),
-      estado: new FormControl(
-        this.user.estado,
-        Validators.compose([Validators.required, Validators.maxLength(256)])
-      )
-    })
+    if (this.mode === 'Creando') {
+      this.form = this.formBuilder.group({
+        id: new FormControl(this.user.id),
+        nick: new FormControl(
+          this.user.nick,
+          Validators.compose([Validators.required, Validators.maxLength(128)])
+        ),
+        puntuaciones: new FormControl(this.user.puntuaciones),
+        estado: new FormControl(
+          this.user.estado,
+          Validators.compose([Validators.required, Validators.maxLength(256)])
+        )
+      })
+    } else {
+      let puntua = this.user.puntuaciones
+      this.form = this.formBuilder.group({
+        id: new FormControl(this.user.id),
+        nick: new FormControl(
+          this.user.nick,
+          Validators.compose([Validators.required, Validators.maxLength(128)])
+        ),
+        puntuaciones: new FormControl(puntua[0].cantidad),
+        estado: new FormControl(
+          this.user.estado,
+          Validators.compose([Validators.required, Validators.maxLength(256)])
+        )
+      })
+    }
 
   }
 
-  get errorControl(){
+  get errorControl() {
     return this.form.controls;
   }
 
-  get errorControlNick(){
-    if(this.errorControl.nick.status ==='INVALID'){
-      if(this.errorControl.nick.errors.required){
+  get errorControlNick() {
+    if (this.errorControl.nick.status === 'INVALID') {
+      if (this.errorControl.nick.errors.required) {
         return 'Campo "nick" requerido';
       }
-      if(this.errorControl.nick.errors.maxLength){
+      if (this.errorControl.nick.errors.maxLength) {
         return 'La longitud maxima del nick es de 128 caracteres';
       }
     }
   }
 
-  get errorControlEstado(){
-    if(this.errorControl.estado.status ==='INVALID'){
-      if(this.errorControl.estado.errors.required){
+  get errorControlEstado() {
+    if (this.errorControl.estado.status === 'INVALID') {
+      if (this.errorControl.estado.errors.required) {
         return 'Campo "estado" requerido';
       }
-      if(this.errorControl.nick.errors.maxLength){
+      if (this.errorControl.nick.errors.maxLength) {
         return 'La longitud maxima del nick es de 256 caracteres';
       }
     }
   }
 
-  submitForm(){
+  submitForm() {
     this.dismiss(this.form.value);
   }
 

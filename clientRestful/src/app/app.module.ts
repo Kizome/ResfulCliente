@@ -12,11 +12,12 @@ import { ApiService } from './services/api.service';
 import { HTTP } from '@ionic-native/http/ngx';
 import { UiService } from './services/ui.service';
 import { FormPage } from './form/form.page';
+import { FormGroupPage } from 'src/app/form-group/form-group.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, FormPage],
-  entryComponents: [FormPage],
+  declarations: [AppComponent, FormPage, FormGroupPage],
+  entryComponents: [FormPage, FormGroupPage],
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
