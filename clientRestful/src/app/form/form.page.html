@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{this.mode}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <ion-input type="hidden" formControlName="id"></ion-input>
+    <ion-item lines="full">
+      <ion-label position="floating">Nick</ion-label>
+      <ion-input type="text" formControlName="nick"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Puntuacion</ion-label>
+      <ion-input type="text" formControlName="puntuacion"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Estado</ion-label>
+      <ion-input type="text" formControlName="estado"></ion-input>
+    </ion-item>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="!this.form.valid" type="submit" color="primary" expand="block">Enviar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+
+  
+  <span class="error ion-padding" *ngIf="this.errorControl.nick.status=='INVALID'" color="danger">
+    {{this.errorControlNick}}
+  </span>
+  <span class="error ion-padding" *ngIf="this.errorControl.estado.status=='INVALID'" color="danger">
+    {{this.errorControlEstado}}
+  </span>
+</ion-content>

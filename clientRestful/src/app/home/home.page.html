@@ -1,14 +1,41 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Blank
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+
+  <ion-toolbar>
+    <ion-searchbar #input showCancelButton="focus" debounce="500" (ionChange)="buscaUser($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let usuario of listado">
+      <ion-item-options side="start" (click)="this.editUser(usuario)">
+        <ion-item-option color="primary">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item>
+       <div><h1>{{usuario.nick}}</h1>
+        {{usuario.estado}}
+      </div>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="removeUser(usuario)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab (click)="this.addUser()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
