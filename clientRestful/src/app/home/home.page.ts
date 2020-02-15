@@ -34,17 +34,7 @@ export class HomePage {
 
   }
 
-  public async removeUser(usuario: Usuario){
-    await this.ui.showLoading();
-    this.api
-    .removeUser(usuario)
-    .then(async d=> await this.loadAll())
-    .catch(async err => {await this.ui.showToast(err.error)
-    console.log(err)})
-    .finally(async()=>{
-      await this.ui.hideLoading();
-    })
-  }
+  
 
   public async buscaUser($event){
     let value = $event.detail.value;
@@ -82,7 +72,7 @@ export class HomePage {
   }
 
   public async editUser(user: Usuario){
-    const itemToBeUpdated = await this.ui.showModal(FormPage, {usuario: user});
+    const itemToBeUpdated = await this.ui.showModal(FormPage, {user});
     console.log('editar')
     console.log(itemToBeUpdated);
     try{
@@ -95,6 +85,18 @@ export class HomePage {
       await this.ui.hideLoading();
       await this.ui.showToast(err.error);
     }
+  }
+
+  public async removeUser(usuario: Usuario){
+    await this.ui.showLoading();
+    this.api
+    .removeUser(usuario)
+    .then(async d=> await this.loadAll())
+    .catch(async err => {await this.ui.showToast(err.error)
+    console.log(err)})
+    .finally(async()=>{
+      await this.ui.hideLoading();
+    })
   }
   
 

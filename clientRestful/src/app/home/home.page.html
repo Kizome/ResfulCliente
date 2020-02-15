@@ -14,16 +14,18 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let usuario of listado">
-      <ion-item-options side="start" (click)="this.editUser(usuario)">
+      
+      <ion-item>
+       <div><h1>{{usuario.nick}}</h1>
+        {{usuario.id}}
+        {{usuario.estado}}
+      </div>
+      </ion-item>
+      <ion-item-options side="start" (click)="editUser(usuario)">
         <ion-item-option color="primary">
           <ion-icon slot="icon-only" name="create"></ion-icon>
         </ion-item-option>
       </ion-item-options>
-      <ion-item>
-       <div><h1>{{usuario.nick}}</h1>
-        {{usuario.estado}}
-      </div>
-      </ion-item>
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="removeUser(usuario)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
