@@ -62,11 +62,11 @@ export class HomePage {
     
     console.log(itemToBeCreated);
     try{
-      itemToBeCreated.data.puntuaciones = [];
       canti = itemToBeCreated.data.puntuaciones;
+      itemToBeCreated.data.puntuaciones = [];      
       if(itemToBeCreated.data){
         await this.ui.showLoading();
-        itemToBeCreated.data.puntuaciones.push({id: '', cantidad: canti});
+        itemToBeCreated.data.puntuaciones.push({id: '', cantidad: canti[0]});
         await this.api.createUser(itemToBeCreated.data);
         await this.loadAll();
       }
