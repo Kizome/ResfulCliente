@@ -6,11 +6,20 @@
 
 <ion-content>
   <form [formGroup]="form" (ngSubmit)="submitForm()">
-    <ion-input type="hidden" formControlName="id"></ion-input>
     <ion-item lines="full">
       <ion-label position="floating">Nick</ion-label>
       <ion-input type="text" formControlName="nick"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label>Grupos</ion-label>
+      <ion-select [(ngModel)]="gruposSeleccionados" [ngModelOptions]="{standalone: true}" multiple="true" >
+        <ion-select-option *ngFor="let grupo of gruposDisponibles">{{grupo.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
     <ion-item lines="full">
       <ion-label position="floating">Puntuacion</ion-label>
       <ion-input type="text" formControlName="puntuaciones"></ion-input>
@@ -30,11 +39,5 @@
   </form>
 
 
-  
-  <span class="error ion-padding" *ngIf="this.errorControl.nick.status=='INVALID'" color="danger">
-    {{this.errorControlNick}}
-  </span>
-  <span class="error ion-padding" *ngIf="this.errorControl.estado.status=='INVALID'" color="danger">
-    {{this.errorControlEstado}}
-  </span>
+
 </ion-content>

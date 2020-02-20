@@ -29,6 +29,7 @@ export class Tab1Page {
       await this.ui.hideLoading();
     } catch (err) {
       this.listado = null;
+      console.log(err);
       await this.ui.showToast(err.error);
       await this.ui.hideLoading();
 
@@ -46,6 +47,7 @@ export class Tab1Page {
         await this.loadAll();
       }
     }catch(err){
+      console.log(err);
       await this.ui.hideLoading();
       await this.ui.showToast(err.error);
       console.log(err);
@@ -63,6 +65,7 @@ export class Tab1Page {
         await this.loadAll();
       }
     }catch(err){
+      console.log(err);
       await this.ui.hideLoading();
       await this.ui.showToast(err.error);
     }

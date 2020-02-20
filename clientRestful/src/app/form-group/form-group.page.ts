@@ -16,13 +16,13 @@ import {
 })
 export class FormGroupPage {
 
-  private group: Grupo;
-  private mode: string;
-  private form: FormGroup;
+  public group: Grupo;
+  public mode: string;
+  public form: FormGroup;
 
   constructor(private navParams: NavParams,
-    private modal: ModalController,
-    private formBuilder: FormBuilder) {
+    public modal: ModalController,
+    public formBuilder: FormBuilder) {
     this.group = navParams.get('group');
     console.log(this.group);
     //console.log(this.user.id)

@@ -17,6 +17,7 @@ export class ApiService {
       if (id) {
         endpoint += id;
       }
+      console.log(endpoint)
       this.http
         .get(endpoint, {}, this.header)
         .then(d => {
@@ -88,6 +89,7 @@ export class ApiService {
 
   public createUser(usuario: Usuario): Promise<void> {
     const endpoint = environment.endpoint + environment.apiItem;
+    console.log(endpoint);
     return new Promise((resolve, reject) => {
       if (usuario) {
         this.http.setDataSerializer('json');
